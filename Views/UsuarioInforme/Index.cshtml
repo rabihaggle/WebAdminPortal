@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebAdminPortal.Models._80UsuarioInforme>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Informes parametrizados para los usuarios</h1>
+<p> </p>
+<p>
+
+    <a class="btn btn-outline-dark" asp-action="Create">Crear nueva alerta</a>
+
+</p>
+<p> </p>
+<table id="user" class="order-column">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioRelacion)
+            </th>
+            <th>
+                Nombre de Informe
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioRelacion)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.IdInformeNavigation.NombreInforme)
+            </td>
+            <td>
+
+                    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts
+    {
+    <script>
+
+
+        $(document).ready(function () {
+            $('#user').DataTable({
+
+                dom: 'fQrtBip',
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
+                },
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Exportar información',
+                        exportOptions: {
+
+
+                        }
+                    }
+                ],
+
+                select: {
+                    style: 'single'
+                }
+
+            });
+        });
+
+
+    </script>
+
+}
