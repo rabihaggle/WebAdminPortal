@@ -2,16 +2,17 @@
 
 <h1>Informes</h1>
 <p>
-    <a asp-action="Create">
+    <a class="btn btn-success" asp-action="Create">
         Crear Informe
     </a>
 </p>
-<table class="table">
+<table id="Informe" class="order-column">
     <thead>
         <tr>
 
             <th>Nombre Informe</th>
             <th>Tipo Informe</th>
+            <th>ID</th>
             <th>Observacion</th>
 
         </tr>
@@ -24,6 +25,7 @@
 
                 <td> @Html.DisplayFor(m => infor.NombreInforme) </td>
                 <td> @Html.DisplayFor(m => infor.TipoInforme) </td>
+                <td> @Html.DisplayFor(m => infor.IdInforme) </td>
                 <td> @Html.DisplayFor(m => infor.Observaciones) </td>
 
             </tr>
@@ -31,3 +33,36 @@
     </tbody>
 
 </table>
+@section scripts
+    {
+    <script>
+
+        $(document).ready(function () {
+            $('#Informe').DataTable({
+               
+                dom: 'fQrtBip',
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
+                },
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Exportar información',
+                        exportOptions: {
+
+
+                        }
+                    }
+                ],
+
+                select: {
+                    style: 'single'
+                }
+
+            });
+        });
+
+
+    </script>
+
+}
