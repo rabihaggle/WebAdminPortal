@@ -1,0 +1,33 @@
+﻿@model List<WebAdminPortal.Models._90InformesParametro>
+
+<h1>Informes</h1>
+<p>
+    <a asp-action="Create">
+        Crear Informe
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>Nombre Informe</th>
+            <th>Tipo Informe</th>
+            <th>Observacion</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var infor in Model )
+        {
+            <tr>
+
+                <td> @Html.DisplayFor(m => infor.NombreInforme) </td>
+                <td> @Html.DisplayFor(m => infor.TipoInforme) </td>
+                <td> @Html.DisplayFor(m => infor.Observaciones) </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
