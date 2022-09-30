@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using WebAdminPortal.Models;
+using WebAdminPortal.Models.ViewModels;
 
 namespace WebAdminPortal.Controllers
 {
@@ -12,9 +13,7 @@ namespace WebAdminPortal.Controllers
 
         public InformesController(PRE_ALTIUS_00_INTERMEDIAContext context)
         {
-
             _context = context;
-
         }
 
         public async Task<IActionResult> Index()
@@ -32,10 +31,24 @@ namespace WebAdminPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(int a)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(InformesViewModels model)
         {
+            if (ModelState.IsValid) 
+            {
 
-            return View();
+                var inf = new _90InformesParametro() { 
+                
+                    NombreInforme = model.NombreInforme,
+                    TipoInforme=model.TipoInforme,
+                    Observaciones=model.Observaciones                    
+                
+                };
+                _context.Add(inf);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
 
         }
 
