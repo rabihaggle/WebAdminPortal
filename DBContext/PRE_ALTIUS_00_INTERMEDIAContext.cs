@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using WebAdminPortal.Models;
 
 namespace WebAdminPortal.DBContext
 {
-    public partial class PRE_ALTIUS_00_INTERMEDIAContext : DbContext
+    public partial class PRE_ALTIUS_00_INTERMEDIAContext : IdentityDbContext
     {
         public PRE_ALTIUS_00_INTERMEDIAContext()
         {
@@ -293,8 +294,8 @@ namespace WebAdminPortal.DBContext
                     .HasMaxLength(50)
                     .HasColumnName("Tipo_informe");
             });
-
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
