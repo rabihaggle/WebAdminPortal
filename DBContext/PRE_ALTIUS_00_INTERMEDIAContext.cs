@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebAdminPortal.Models;
 
-namespace WebAdminPortal.Models
+namespace WebAdminPortal.DBContext
 {
     public partial class PRE_ALTIUS_00_INTERMEDIAContext : DbContext
     {

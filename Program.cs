@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebAdminPortal.Models;
+using WebAdminPortal.DBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
